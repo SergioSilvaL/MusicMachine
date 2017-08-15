@@ -11,35 +11,29 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-
     private static final String TAG = MainActivity.class.getSimpleName();
     public static final String KEY_SONG = "song";
-    private Button mDownlaodButten;
+    private Button mDownloadButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mDownloadButton = (Button) findViewById(R.id.downloadButton);
 
-        mDownlaodButten = (Button) findViewById(R.id.downloadButton);
-
-        mDownlaodButten.setOnClickListener(new View.OnClickListener() {
+        mDownloadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "DOWNLOADING", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Downloading", Toast.LENGTH_SHORT).show();
 
-                // Send Messages to the handler for proccesing
-                for (String song : Playlist.songs){
+                // Send Messages to Handler for processing
+                for (String song : Playlist.songs) {
                     Intent intent = new Intent(MainActivity.this, DownloadService.class);
                     intent.putExtra(KEY_SONG, song);
                     startService(intent);
                 }
-
             }
         });
-
     }
-
-
 }

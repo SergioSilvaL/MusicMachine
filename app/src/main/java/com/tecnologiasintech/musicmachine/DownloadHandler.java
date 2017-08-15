@@ -14,24 +14,18 @@ public class DownloadHandler extends Handler {
 
     @Override
     public void handleMessage(Message msg) {
-        downlaodSong(msg.obj.toString());
+        downloadSong(msg.obj.toString());
     }
 
-    private void downlaodSong(String song){
-
-        long endTime = System.currentTimeMillis() + 10 * 1000;
-
-        while (System.currentTimeMillis() < endTime){
-
+    private void downloadSong(String song) {
+        long endTime = System.currentTimeMillis() + 10*1000;
+        while (System.currentTimeMillis() < endTime) {
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
         }
-
-        Log.d(TAG, song + " downloaded");
-
+        Log.d(TAG, song + " downloaded!");
     }
 }
